@@ -11,6 +11,10 @@ const i4 = document.getElementsByClassName("i4");
 const scores = document.getElementsByClassName("scores");
 
 calcButton.addEventListener("click", function () {
+    let array = [i1.value, i2.value, i3.value, i4.value];
     const sum = i1.value + i2.value + i3.value + i4.value;
-    scores.textContent = sum;
+    const average = sum/4;
+    const min = Math.min(array);
+    const max = Math.max(array);
+    scores.textContent = `${sum} ${average} ${min} ${max}`;
 });
