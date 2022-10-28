@@ -4,6 +4,16 @@
     margin: 100px auto 0 auto;
     overflow: hidden;
 }
+.arrow{
+    position: absolute;
+    margin-top: 180px;
+    z-index: 2;
+    height: 50px;
+}
+
+#arrow-right{ 
+    margin-left: 530px;
+}
 
 #slider .slides {
     display: flex;
