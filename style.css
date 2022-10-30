@@ -1,18 +1,19 @@
 #slider {
     width: 600px;
-    height: 400px;
-    margin: 100px auto 0 auto;
+    top: 20%;  
+    left: 35%; 
+    position: absolute;
     overflow: hidden;
 }
-
-.arrow{
+.container{
+    z-index: 1;
+    top: 20%;  
+    left: 35%; 
     position: absolute;
-    z-index: 2;
-    margin-top: 170px;
 }
 
-.bi-arrow-right{ 
-    margin-left: 550px;
+.arrow, .bi-circle{
+    cursor: pointer;
 }
 
 #slider .slides {
