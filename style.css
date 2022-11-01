@@ -11,24 +11,28 @@
     top: 45%;
 }
 
-#slider .slides {
-    display: flex;
-    animation: pociag-w-lewo 20s infinite;
-    animation-timing-function: ease-in-out;
+#slider .slide:hover{
+    opacity: 50%;
 }
 
 #slider .right{
     right: 0;
 }
+
+#slider .dots{
+    position: absolute;
+    bottom: 0;
+    left: 40%;
+}
+
 .arrow, .bi-circle{
     cursor: pointer;
 }
 
-.container{
-    z-index: 1;
-    top: 20%;  
-    left: 35%; 
-    position: absolute;
+#slider .slides {
+    display: flex;
+    animation: pociag-w-lewo 20s infinite;
+    animation-timing-function: ease-in-out;
 }
 
 @keyframes pociag-w-lewo {
