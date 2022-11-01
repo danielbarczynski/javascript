@@ -29,6 +29,7 @@ let index = 1;
 const left = document.querySelector('.left');
 const right = document.querySelector('.right');
 const img = document.querySelectorAll('img');
+const dots = document.querySelectorAll('.dot');
 
 const slide = function (num) {
     console.log('slide');
@@ -49,6 +50,14 @@ const show = function (num) {
     }
 
     img[index - 1].style.display = 'block';
+}
+
+const showDot = function(num) {
+    for (let i = 0; i < img.length; i++) {
+        img[i].style.display = 'none';    
+    }
+    
+    img[num].style.display = 'block';
 }
 
 // show(index);
