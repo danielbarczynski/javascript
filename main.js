@@ -36,8 +36,7 @@ const slide = function (num) {
 }
 
 const show = function (num) {
-    console.log('clicked');
-    let i;
+    console.log('show');
 
     if (num > img.length)
         index = 1;
