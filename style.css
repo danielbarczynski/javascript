@@ -29,7 +29,7 @@
     cursor: pointer;
 }
 
-#slider .slides {
+/* #slider .slides {
     display: flex;
     animation: pociag-w-lewo 20s infinite;
     animation-timing-function: ease-in-out;
@@ -69,4 +69,4 @@
     100% {
         transform: translateX(-3000px);
     }
-}
+} */

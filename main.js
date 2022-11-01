@@ -31,12 +31,13 @@ const right = document.querySelector('.right');
 const img = document.querySelectorAll('img');
 
 const slide = function (num) {
+    console.log('slide');
     show(index += num);
 }
 
 const show = function (num) {
     console.log('clicked');
-    let i = 0;
+    let i;
 
     if (num > img.length)
         index = 1;
@@ -51,6 +52,6 @@ const show = function (num) {
     img[index - 1].style.display = 'block';
 }
 
-show(index);
-left.addEventListener('click', show(-1));
-right.addEventListener('click', show(+1));
+// show(index);
+// left.addEventListener('click', slide);
+// right.addEventListener('click', slide);
