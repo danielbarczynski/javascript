@@ -5,21 +5,30 @@
     position: absolute;
     overflow: hidden;
 }
-.container{
-    z-index: 1;
-    top: 20%;  
-    left: 35%; 
-    position: absolute;
-}
 
-.arrow, .bi-circle{
-    cursor: pointer;
+#slider .slide{
+    position: absolute;
+    top: 45%;
 }
 
 #slider .slides {
     display: flex;
     animation: pociag-w-lewo 20s infinite;
     animation-timing-function: ease-in-out;
+}
+
+#slider .right{
+    right: 0;
+}
+.arrow, .bi-circle{
+    cursor: pointer;
+}
+
+.container{
+    z-index: 1;
+    top: 20%;  
+    left: 35%; 
+    position: absolute;
 }
 
 @keyframes pociag-w-lewo {
