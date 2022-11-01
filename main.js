@@ -2,14 +2,13 @@
 
 let index = 1;
 const img = document.querySelectorAll('img');
+const dots = document.querySelectorAll('.bi-circle');
 
-const slide = function(num) {
-    console.log('slide');
+const slide = function(num) {  
     show(index += num);
 }
 
 const show = function(num) {
-    console.log('show');
     if (num > img.length)
         index = 1;
     
@@ -17,21 +16,25 @@ const show = function(num) {
         index = img.length;
     
     for (let i = 0; i < img.length; i++) {
-        img[i].style.display = 'none';    
+        dots[i].classList.replace('bi-circle-fill', 'bi-circle'); 
+        img[i].style.display = 'none';  
     }
     
-    console.log(index - 1);
+    dots[index - 1].classList.replace('bi-circle', 'bi-circle-fill');
     img[index - 1].style.display = 'block';
 }
 
 const showDot = function(num) {
+    
     for (let i = 0; i < img.length; i++) {
         img[i].style.display = 'none';    
+        dots[i].classList.replace('bi-circle-fill', 'bi-circle'); 
     }
 
     index = num + 1;
+    dots[index - 1].classList.replace('bi-circle', 'bi-circle-fill');
     img[index - 1].style.display = 'block';
-    console.log(index);
 }
 
-setInterval(() => {  show(++index); }, 3000);
+dots[0].classList.replace('bi-circle', 'bi-circle-fill');
+setInterval(() => {  show(++index); }, 5000);
