@@ -3,7 +3,7 @@
 let isClicked = false;
 let i = 0;
 let timeout = 0;
-let start = null;
+let start;
 let end;
 let time;
 
@@ -19,9 +19,12 @@ const durationArray3 = [];
 const audioArray4 = [];
 const durationArray4 = [];
 
-const recordButtons = document.querySelector('.record');
-const pauseButtons = document.querySelector('.pause');
-const playButtons = document.querySelector('.play');
+let currnetAudioArray = [];
+let currnetDurationArray = [];
+
+const recordButtons = document.querySelectorAll('.record'); //todo: attribute e.g. data-acive
+const pauseButtons = document.querySelectorAll('.pause');
+const playButtons = document.querySelectorAll('.play');
 
 function playSound(e) {
     end = new Date().getTime();
@@ -42,8 +45,8 @@ function playSound(e) {
     }
 }
 
-function record() {
-    isClicked = true;
+function record() { //todo: param data-active num, then assign array to current
+    isClicked = true; 
 }
 
 function pause() {
@@ -65,6 +68,6 @@ function playRecord() {
 }
 
 window.addEventListener('keypress', playSound);
-recordButtons.addEventListener('click', record); //todo: nagrywanie na wszystkich czterych kanałach, nie tylko jednym
+recordButtons.addEventListener('click', record);
 pauseButtons.addEventListener('click', pause);
 playButtons.addEventListener('click', playRecord);
