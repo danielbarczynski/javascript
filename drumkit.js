@@ -2,6 +2,7 @@
 
 let isClicked = false;
 let i = 0;
+let timeout = 0;
 
 const audioArray = [];
 const durationArray = [];
@@ -43,10 +44,11 @@ function pause() {
 }
 
 function playRecord() {
-    audioArray.forEach(el => {
+    audioArray.forEach(el => { //! indexing bo powielone dzwieki sie ze soba lacza
+        console.log(durationArray[i]);
         setTimeout(() => {
             el.play()
-        }, durationArray[i++] * i++); //! opoznienie czasowe nie czas danego utworu
+        }, (durationArray[i++] * 1000) * timeout++); //! opoznienie czasowe nie czas danego utworu
     })
 }
 
