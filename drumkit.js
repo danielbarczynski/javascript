@@ -1,36 +1,4 @@
-// // notatnik 
-// document.addEventListener('keypress', onKeyPress)
 
-// const KeyToSound = {
-//     'a': 's1',
-//     's': 's2',
-// }
-// function onKeyPress(ev) {
-//     // const key = event.key
-//     // logika mapowania key -> sound
-//     const sound = KeyToSound[ev.key]
-//     // switch (ev.key) {
-//     //     case 'a':
-//     //         sound = SOUND.clap
-//     //         // clap
-//     //         break;
-//     //     case 's':
-//     //         sound = SOUND.hihat
-//     //         // hihat
-//     //         break;
-//     // }
-//     playSound(sound)
-// }
-
-// function playSound(sound) {
-//     if (!sound) {
-//         return
-//     }
-//     const audioTag = document.querySelector(`#${clap}`)
-//     audioTag.currentTime = 0
-//     audioTag.play()
-// }
-// // Date.now()
 'use strict';
 
 let isClicked = false;
@@ -60,7 +28,7 @@ function playSound(e) {
 
     if (isClicked === true) {
         audioArray.push(audio);
-        durationArray.push(audio.duration);
+        durationArray.push(audio.duration); //! czas utworu - czas odstepu od nastepnego dzwieku
     }
 
     audio.currentTime = 0;
@@ -79,7 +47,7 @@ function playRecord() {
     audioArray.forEach(el => {
         setTimeout(() => {
             el.play()
-        }, 1000 * i++);
+        }, durationArray[i++] * i++); //! opoznienie czasowe nie czas danego utworu
     })
 }
 
