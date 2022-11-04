@@ -34,6 +34,7 @@
 'use strict';
 
 let isClicked = false;
+let i = 0;
 
 const audioArray = [];
 const durationArray = [];
@@ -54,11 +55,10 @@ const playButtons = document.querySelector('.play');
 function playSound(e) {
     const audio = document.querySelector(`audio[data-key="${e.key}"]`);
 
-    if (!audio) 
+    if (!audio)
         return;
-    
-    if (isClicked === true)
-    {
+
+    if (isClicked === true) {
         audioArray.push(audio);
         durationArray.push(audio.duration);
     }
@@ -75,13 +75,15 @@ function pause() {
     isClicked = false;
 }
 
-function play() {
+function playRecord() {
     audioArray.forEach(el => {
-        setTimeout(el.play(), 1000);
-    });
+        setTimeout(() => {
+            el.play()
+        }, 1000 * i++);
+    })
 }
 
 window.addEventListener('keypress', playSound);
 recordButtons.addEventListener('click', record);
 pauseButtons.addEventListener('click', pause);
-playButtons.addEventListener('click', play);
+playButtons.addEventListener('click', playRecord);
