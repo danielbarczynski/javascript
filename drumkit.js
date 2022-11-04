@@ -33,14 +33,28 @@
 // // Date.now()
 'use strict';
 
+const audioArray = [];
+const durationArray = [];
+
+const audioArray2 = [];
+const durationArray2 = [];
+
+const audioArray3 = [];
+const durationArray3 = [];
+
+const audioArray4 = [];
+const durationArray4 = [];
+
 function playSound(e) {
     const audio = document.querySelector(`audio[data-key="${e.key}"]`);
 
     if (!audio) 
         return;
-        
+    audioArray.push(audio);
+    durationArray.push(audio.duration);
     audio.currentTime = 0;
     audio.play();
 }
+
 
 window.addEventListener('keypress', playSound);

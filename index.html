@@ -8,7 +8,61 @@
     <title>Document</title>
 </head>
 
-<body style="background-color: gray;">
+<body style="background-color: gray; color: aliceblue; font-size: 30px;">
+    <audio data-key="a" src="sounds/boom.wav"></audio>
+    <audio data-key="s" src="sounds/clap.wav"></audio>
+    <audio data-key="d" src="sounds/hihat.wav"></audio>
+    <audio data-key="w" src="sounds/kick.wav"></audio>
+    <audio data-key="e" src="sounds/openhat.wav"></audio>
+    <audio data-key="q" src="sounds/ride.wav"></audio>
+    <audio data-key="z" src="sounds/snare.wav"></audio>
+    <audio data-key="x" src="sounds/tink.wav"></audio>
+    <audio data-key="c" src="sounds/tom.wav"></audio>
+    
+    <div class="mainContainer" style="margin-top: 30px; overflow: hidden;">
+        <div style="position: relative; left: 30%;">
+            Q - RIDE &nbsp;
+            W - KICK &nbsp;
+            E - OPEN-HAT &nbsp;
+            A - BOOM &nbsp;
+        </div>
+        <div style="position: relative; left: 27%;">
+            S - CLAP &nbsp;
+            D - HIT-HAT &nbsp;
+            Z - SNARE &nbsp;
+            X - TINK &nbsp;
+            C - TOM &nbsp;
+        </div>
+    </div>
+
+    <div class="container"
+        style="position: relative; left: 40%; margin-top: 5%; border: 5px solid; width: fit-content; padding: 15px;">
+        <div>
+            Track 1:
+            <button>Record</button>
+            <button>Pause</button>
+            <button>Play</button>
+        </div>
+        <div style="margin-top: 10px;">
+            Track 2:
+            <button>Record</button>
+            <button>Pause</button>
+            <button>Play</button>
+        </div>
+        <div style="margin-top: 10px;">
+            Track 3:
+            <button>Record</button>
+            <button>Pause</button>
+            <button>Play</button>
+        </div>
+        <div style="margin-top: 10px;">
+            Track 4:
+            <button>Record</button>
+            <button>Pause</button>
+            <button>Play</button>
+        </div>
+    </div>
+
     <audio data-key="a" src="sounds/boom.wav"></audio>
     <audio data-key="s" src="sounds/clap.wav"></audio>
     <audio data-key="d" src="sounds/hihat.wav"></audio>
@@ -20,6 +74,6 @@
     <audio data-key="c" src="sounds/tom.wav"></audio>
 
     <script src="drumkit.js"></script>
-</body> 
+</body>
 
 </html>
