@@ -3,6 +3,8 @@
 let isClicked = false;
 let i = 0;
 let timeout = 0;
+let start;
+let end;
 
 const audioArray = [];
 const durationArray = [];
@@ -21,18 +23,21 @@ const pauseButtons = document.querySelector('.pause');
 const playButtons = document.querySelector('.play');
 
 function playSound(e) {
+    end = new Date().getTime();
     const audio = document.querySelector(`audio[data-key="${e.key}"]`);
 
     if (!audio)
         return;
 
-    if (isClicked === true) {
-        audioArray.push(audio);
-        durationArray.push(audio.duration); //! czas utworu - czas odstepu od nastepnego dzwieku
-    }
-
     audio.currentTime = 0;
     audio.play();
+    start = new Date().getTime();
+    time = end - start;
+
+    if (isClicked === true) {
+        audioArray.push(audio);
+        durationArray.push(time); //! czas utworu - czas odstepu od nastepnego dzwieku
+    }
 }
 
 function record() {
