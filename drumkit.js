@@ -3,8 +3,9 @@
 let isClicked = false;
 let i = 0;
 let timeout = 0;
-let start;
+let start = null;
 let end;
+let time;
 
 const audioArray = [];
 const durationArray = [];
@@ -24,6 +25,9 @@ const playButtons = document.querySelector('.play');
 
 function playSound(e) {
     end = new Date().getTime();
+    time = end - start;
+    durationArray.push(time);
+
     const audio = document.querySelector(`audio[data-key="${e.key}"]`);
 
     if (!audio)
@@ -32,11 +36,9 @@ function playSound(e) {
     audio.currentTime = 0;
     audio.play();
     start = new Date().getTime();
-    time = end - start;
 
     if (isClicked === true) {
         audioArray.push(audio);
-        durationArray.push(time); //! czas utworu - czas odstepu od nastepnego dzwieku
     }
 }
 
@@ -49,12 +51,17 @@ function pause() {
 }
 
 function playRecord() {
-    audioArray.forEach(el => { //! indexing bo powielone dzwieki sie ze soba lacza
+    isClicked = false;
+
+    audioArray.forEach(el => { 
         console.log(durationArray[i]);
         setTimeout(() => {
             el.play()
-        }, (durationArray[i++] * 1000) * timeout++); //! opoznienie czasowe nie czas danego utworu
+        }, durationArray[i++] * timeout++);
     })
+
+    i = 0;
+    timeout = 0;
 }
 
 window.addEventListener('keypress', playSound);
