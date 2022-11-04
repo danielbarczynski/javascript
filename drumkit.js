@@ -33,6 +33,8 @@
 // // Date.now()
 'use strict';
 
+let isClicked = false;
+
 const audioArray = [];
 const durationArray = [];
 
@@ -45,16 +47,41 @@ const durationArray3 = [];
 const audioArray4 = [];
 const durationArray4 = [];
 
+const recordButtons = document.querySelector('.record');
+const pauseButtons = document.querySelector('.pause');
+const playButtons = document.querySelector('.play');
+
 function playSound(e) {
     const audio = document.querySelector(`audio[data-key="${e.key}"]`);
 
     if (!audio) 
         return;
-    audioArray.push(audio);
-    durationArray.push(audio.duration);
+    
+    if (isClicked === true)
+    {
+        audioArray.push(audio);
+        durationArray.push(audio.duration);
+    }
+
     audio.currentTime = 0;
     audio.play();
 }
 
+function record() {
+    isClicked = true;
+}
+
+function pause() {
+    isClicked = false;
+}
+
+function play() {
+    audioArray.forEach(el => {
+        setTimeout(el.play(), 1000);
+    });
+}
 
 window.addEventListener('keypress', playSound);
+recordButtons.addEventListener('click', record);
+pauseButtons.addEventListener('click', pause);
+playButtons.addEventListener('click', play);
