@@ -1,4 +1,3 @@
-
 'use strict';
 
 let isClicked = false;
@@ -52,6 +51,6 @@ function playRecord() {
 }
 
 window.addEventListener('keypress', playSound);
-recordButtons.addEventListener('click', record);
+recordButtons.addEventListener('click', record); //todo: nagrywanie na wszystkich czterych kanałach, nie tylko jednym
 pauseButtons.addEventListener('click', pause);
 playButtons.addEventListener('click', playRecord);
