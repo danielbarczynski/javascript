@@ -78,12 +78,31 @@ function pause() {
 
 function playRecord() { 
     isClicked = false;
-
-    audioArray1.forEach(el => {
-        console.log(durationArray1[i]); //! audioArray(this.id)
+    switch (this.id) { //! make as a one function
+        case '1':
+            currnetAudioArray = audioArray1;
+            currnetDurationArray = durationArray1;
+            break;
+        case '2':
+            currnetAudioArray = audioArray2;
+            currnetDurationArray = durationArray2;
+            break;
+        case '3':
+            currnetAudioArray = audioArray3;
+            currnetDurationArray = durationArray3;
+            break;
+        case '4':
+            currnetAudioArray = audioArray4;
+            currnetDurationArray = durationArray4;
+            break;
+        default:
+            break;
+    }
+    currnetAudioArray.forEach(el => {
+        console.log(currnetDurationArray[i]); //! audioArray(this.id)
         setTimeout(() => {
             el.play()
-        }, durationArray1[i++] * timeout++);
+        }, currnetDurationArray[i++] * timeout++);
     })
 
     i = 0;
