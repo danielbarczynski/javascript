@@ -22,9 +22,9 @@ const durationArray4 = [];
 let currnetAudioArray = [];
 let currnetDurationArray = [];
 
-const recordButtons = document.querySelectorAll('.record'); //todo: attribute e.g. data-acive
-const pauseButtons = document.querySelectorAll('.pause');
-const playButtons = document.querySelectorAll('.play');
+const recordButtons = document.querySelectorAll('button[data-active="record"]'); 
+const pauseButtons = document.querySelector('button[data-active="pause"]');
+const playButtons = document.querySelectorAll('button[data-active="play"]');
 
 function playSound(e) {
     end = new Date().getTime();
@@ -68,6 +68,15 @@ function playRecord() {
 }
 
 window.addEventListener('keypress', playSound);
-recordButtons.addEventListener('click', record);
-pauseButtons.addEventListener('click', pause);
-playButtons.addEventListener('click', playRecord);
+
+recordButtons.forEach(button => {
+    button.addEventListener('click', record);
+});
+
+pauseButtons.forEach(button => {
+    button.addEventListener('click', pause);
+});
+
+playButtons.forEach(button => {
+    button.addEventListener('click', playRecord);
+});
