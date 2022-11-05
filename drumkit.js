@@ -48,26 +48,7 @@ function playSound(e) {
 }
 
 function record() { 
-    switch (this.id) { // chcialem dynamicznie przypisac currentArray = 'audioArray' + this.id ale bez powodzenia
-        case '1':
-            currnetAudioArray = audioArray1;
-            currnetDurationArray = durationArray1;
-            break;
-        case '2':
-            currnetAudioArray = audioArray2;
-            currnetDurationArray = durationArray2;
-            break;
-        case '3':
-            currnetAudioArray = audioArray3;
-            currnetDurationArray = durationArray3;
-            break;
-        case '4':
-            currnetAudioArray = audioArray4;
-            currnetDurationArray = durationArray4;
-            break;
-        default:
-            break;
-    }
+    switchArray(this.id);
 
     isClicked = true;
 }
@@ -78,7 +59,21 @@ function pause() {
 
 function playRecord() { 
     isClicked = false;
-    switch (this.id) { //! make as a one function
+    switchArray(this.id);
+
+    currnetAudioArray.forEach(el => {
+        console.log(currnetDurationArray[i]); //! audioArray(this.id)
+        setTimeout(() => {
+            el.play()
+        }, currnetDurationArray[i++] * timeout++);
+    })
+
+    i = 0;
+    timeout = 0;
+}
+
+function switchArray(id) {
+    switch (id) { 
         case '1':
             currnetAudioArray = audioArray1;
             currnetDurationArray = durationArray1;
@@ -98,16 +93,9 @@ function playRecord() {
         default:
             break;
     }
-    currnetAudioArray.forEach(el => {
-        console.log(currnetDurationArray[i]); //! audioArray(this.id)
-        setTimeout(() => {
-            el.play()
-        }, currnetDurationArray[i++] * timeout++);
-    })
-
-    i = 0;
-    timeout = 0;
 }
+
+//todo: play all at once button
 //todo: pause recordplay or restart recordplay
 window.addEventListener('keypress', playSound);
 
