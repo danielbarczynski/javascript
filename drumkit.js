@@ -23,13 +23,15 @@ let currnetAudioArray = [];
 let currnetDurationArray = [];
 
 const recordButtons = document.querySelectorAll('button[data-active="record"]'); 
-const pauseButtons = document.querySelector('button[data-active="pause"]');
+const pauseButtons = document.querySelectorAll('button[data-active="pause"]');
 const playButtons = document.querySelectorAll('button[data-active="play"]');
 
 function playSound(e) {
     end = new Date().getTime();
     time = end - start;
-    durationArray.push(time);
+    
+    if (isClicked === true)
+        currnetDurationArray.push(time);
 
     const audio = document.querySelector(`audio[data-key="${e.key}"]`);
 
@@ -41,11 +43,16 @@ function playSound(e) {
     start = new Date().getTime();
 
     if (isClicked === true) {
-        audioArray.push(audio);
+        currnetAudioArray.push(audio);
     }
 }
 
 function record() { //todo: param data-active num, then assign array to current
+    
+        currnetAudioArray = audioArray;
+        currnetDurationArray = durationArray;
+    
+
     isClicked = true; 
 }
 
