@@ -7,8 +7,8 @@ let start;
 let end;
 let time;
 
-const audioArray = [];
-const durationArray = [];
+const audioArray1 = [];
+const durationArray1 = [];
 
 const audioArray2 = [];
 const durationArray2 = [];
@@ -22,14 +22,14 @@ const durationArray4 = [];
 let currnetAudioArray = [];
 let currnetDurationArray = [];
 
-const recordButtons = document.querySelectorAll('button[data-active="record"]'); 
+const recordButtons = document.querySelectorAll('button[data-active="record"]');
 const pauseButtons = document.querySelectorAll('button[data-active="pause"]');
 const playButtons = document.querySelectorAll('button[data-active="play"]');
 
 function playSound(e) {
     end = new Date().getTime();
     time = end - start;
-    
+
     if (isClicked === true)
         currnetDurationArray.push(time);
 
@@ -47,33 +47,49 @@ function playSound(e) {
     }
 }
 
-function record() { //todo: param data-active num, then assign array to current
-    
-        currnetAudioArray = audioArray;
-        currnetDurationArray = durationArray;
-    
+function record() { 
+    switch (this.id) { // chcialem dynamicznie przypisac currentArray = 'audioArray' + this.id ale bez powodzenia
+        case '1':
+            currnetAudioArray = audioArray1;
+            currnetDurationArray = durationArray1;
+            break;
+        case '2':
+            currnetAudioArray = audioArray2;
+            currnetDurationArray = durationArray2;
+            break;
+        case '3':
+            currnetAudioArray = audioArray3;
+            currnetDurationArray = durationArray3;
+            break;
+        case '4':
+            currnetAudioArray = audioArray4;
+            currnetDurationArray = durationArray4;
+            break;
+        default:
+            break;
+    }
 
-    isClicked = true; 
+    isClicked = true;
 }
 
 function pause() {
     isClicked = false;
 }
 
-function playRecord() {
+function playRecord() { 
     isClicked = false;
 
-    audioArray.forEach(el => { 
-        console.log(durationArray[i]);
+    audioArray1.forEach(el => {
+        console.log(durationArray1[i]); //! audioArray(this.id)
         setTimeout(() => {
             el.play()
-        }, durationArray[i++] * timeout++);
+        }, durationArray1[i++] * timeout++);
     })
 
     i = 0;
     timeout = 0;
 }
-
+//todo: pause recordplay or restart recordplay
 window.addEventListener('keypress', playSound);
 
 recordButtons.forEach(button => {
