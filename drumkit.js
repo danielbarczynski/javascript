@@ -62,7 +62,6 @@ function playRecord() {
     switchArray(this.id);
 
     currnetAudioArray.forEach(el => {
-        console.log(currnetDurationArray[i]); //! audioArray(this.id)
         setTimeout(() => {
             el.play()
         }, currnetDurationArray[i++] * timeout++);
@@ -72,7 +71,7 @@ function playRecord() {
     timeout = 0;
 }
 
-function switchArray(id) {
+function switchArray(id) { //* próbowałem po prostu przypisać currentArray = 'array' + this.id; ale bez powodzenia
     switch (id) { 
         case '1':
             currnetAudioArray = audioArray1;
@@ -95,8 +94,6 @@ function switchArray(id) {
     }
 }
 
-//todo: play all at once button
-//todo: pause recordplay or restart recordplay
 window.addEventListener('keypress', playSound);
 
 recordButtons.forEach(button => {
