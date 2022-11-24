@@ -45,7 +45,8 @@ function removeNote() {
 
     localStorage.removeItem(title.value);
     refresh();
-    // getItems();
+    notes.innerHTML = '';
+    getNotes();
 }
 function getNotes() {
     for (let i = 0; i < localStorage.length; i++) {
