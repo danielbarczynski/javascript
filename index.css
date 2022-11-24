@@ -5,7 +5,14 @@
 }
 
 body {
+    margin: 5% 30%;
     background-color: rgb(55, 55, 55);
     color: aliceblue;
-   
+}
+
+#notes {
+    display: flex;
+    /* justify-content: space-between;    */
+    /* flex-flow: wrap; */
+    flex-wrap: wrap;
 }
