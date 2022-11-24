@@ -4,7 +4,8 @@ const addBtn = document.querySelector('#add');
 const rmvBtn = document.querySelector('#remove');
 const notes = document.querySelector('#notes');
 const notebg = document.querySelector('#notebg');
-getItems();
+
+getNotes();
 
 function addNote() {
     if (title.value === '' || text.value === '') return;
@@ -13,18 +14,29 @@ function addNote() {
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); 
     var yyyy = today.getFullYear();
-    const color = notebg.options[notebg.selectedIndex].textContent;
+    // const color = notebg.options[notebg.selectedIndex].textContent;
     
     today = mm + '/' + dd + '/' + yyyy;
-    localStorage.setItem(title.value, text.value + '<br /><br />' + today);
+    // localStorage.setItem(title.value, text.value); // + '<br /><br />' + today
+    // const key = localStorage.key(title.value);
+    // const value = localStorage.getItem(text.value);
+    const note = document.createElement('div');
+    
+    note.style.display = 'block';
+    note.style.padding = '5px';
+    note.style.margin = '5px';
+    note.style.border = 'solid 1px';
+    note.style.backgroundColor = notebg.options[notebg.selectedIndex].textContent;
+    notes.appendChild(note);
+    note.innerHTML = `<b>${title.value} </b> <br /> <br />${text.value}<br /> <br />${today}`;
+    localStorage.setItem(title.value, note.outerHTML);
     refresh();
-    getItems();
 }
 
 function refresh() {
     title.value = '';
     text.value = '';
-    notes.innerHTML = '';
+    // notes.innerHTML = '';
 }
 
 //* removing by inserting title to the input. updating works the same (for now)
@@ -33,9 +45,16 @@ function removeNote() {
 
     localStorage.removeItem(title.value);
     refresh();
-    getItems();
+    // getItems();
 }
-
+function getNotes() {
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
+        
+        notes.innerHTML += value;
+    }
+}
 function getItems() {
     for (let i = 0; i < localStorage.length; i++) { 
         const key = localStorage.key(i);
