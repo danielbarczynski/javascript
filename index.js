@@ -4,8 +4,8 @@ const addBtn = document.querySelector('#add');
 const rmvBtn = document.querySelector('#remove');
 const notes = document.querySelector('#notes');
 const notebg = document.querySelector('#notebg');
-const pins = document.querySelector('.pin');
-console.log(pins); // not catching cuz this is from local storage
+const pin = document.querySelector('#pin');
+
 getNotes();
 
 function addNote() {
@@ -18,9 +18,9 @@ function addNote() {
     
     today = mm + '/' + dd + '/' + yyyy;
     const note = document.createElement('div');
-    let isPinned = false;
     let noteId = title.value;
     note.id = noteId;
+    note.setAttribute('ispinned', false);
     note.style.display = 'block';
     note.style.padding = '5px';
     note.style.margin = '5px';
@@ -28,7 +28,7 @@ function addNote() {
     note.style.backgroundColor = notebg.options[notebg.selectedIndex].textContent;
     notes.appendChild(note);
     note.innerHTML = `
-    <b>${noteId} </b> <input class="pin" type="checkbox" isPinned="${isPinned}"/>
+    <b>${noteId} </b> <input class="pin" type="checkbox"/>
      <br /> <br />
      ${text.value}
      <br /> <br />
@@ -66,10 +66,17 @@ function getNotes() {
     }
 }
 
+function pinNote() {
+    if (title.value === '') return;
+    console.log('cl');
+    const note = document.getElementById(title.value);
+    note.setAttribute('ispinned', true);
+
+    // refresh();
+    // notes.innerHTML = '';
+    // getNotes();
+}
+
 addBtn.addEventListener('click', addNote);
 rmvBtn.addEventListener('click', removeNote);
-console.log(pins.length);
-for (let i = 0; i < pins.length; i++) {
-    addEventListener('change', () => console.log('hi'));
-    console.log('hi');
-}
+pin.addEventListener('click', pinNote)
