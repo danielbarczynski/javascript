@@ -3,6 +3,7 @@ const text = document.querySelector('#text');
 const addBtn = document.querySelector('#add');
 const rmvBtn = document.querySelector('#remove');
 const notes = document.querySelector('#notes');
+const pinnedNotes = document.querySelector('#pinnedNotes');
 const notebg = document.querySelector('#notebg');
 const pin = document.querySelector('#pin');
 
@@ -61,8 +62,14 @@ function getNotes() {
     for (let i = 0; i < localStorage.length; i++) {
         
         const key = localStorage.key(i);
+    
         const value = localStorage.getItem(key);
+        console.log(value);
         notes.innerHTML += value;
+        // const note = document.getElementById(key); // of course id doesn't work, jesus christ
+        // if (note.getAttribute('ispinned') === true)
+        if (value.match('ispinned="true"'))
+            pinnedNotes.innerHTML += value;
     }
 }
 
@@ -70,13 +77,22 @@ function pinNote() {
     if (title.value === '') return;
     console.log('cl');
     const note = document.getElementById(title.value);
+    console.log(note.outerHTML);
     note.setAttribute('ispinned', true);
-
+    // pinnedNotes.appendChild('div');
+    pinnedNotes.innerHTML += note.outerHTML;
     // refresh();
     // notes.innerHTML = '';
     // getNotes();
 }
 
+//* for test
+//const items = { ...localStorage };
+
+// for (x in items) {
+//     document.getElementById(x).innerHTML = localStorage.getItem(x);
+// }
+
 addBtn.addEventListener('click', addNote);
 rmvBtn.addEventListener('click', removeNote);
-pin.addEventListener('click', pinNote)
+pin.addEventListener('click', pinNote);

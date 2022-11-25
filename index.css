@@ -10,7 +10,7 @@ body {
     color: aliceblue;
 }
 
-#notes {
+#notes, #pinnedNotes {
     display: flex;
     /* justify-content: space-between;    */
     /* flex-flow: wrap; */
