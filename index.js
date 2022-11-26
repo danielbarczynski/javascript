@@ -82,8 +82,8 @@ function pinNote() {
     if (title.value === '') return;
     console.log('cl');
     const note = document.getElementById(title.value);
-    console.log(note.outerHTML);
     note.setAttribute('data-pin', true);
+    localStorage.setItem(title.value, note.outerHTML);
     // pinnedNotes.appendChild('div');
     pinnedNotes.innerHTML += note.outerHTML;
     // refresh();
