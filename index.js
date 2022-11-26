@@ -8,7 +8,6 @@ const notebg = document.querySelector('#notebg');
 const pin = document.querySelector('#pin');
 const items = { ...localStorage };
 
-
 getNotes();
 
 function addNote() {
@@ -40,7 +39,6 @@ function addNote() {
     localStorage.setItem(title.value, note.outerHTML);
     refresh();
 }
-// const noteCheckbox = document.getElementById(noteId);
 
 function handlePin() {
     console.log('clicked');
@@ -57,6 +55,7 @@ function removeNote() {
     localStorage.removeItem(title.value);
     refresh();
     notes.innerHTML = '';
+    pinnedNotes.innerHTML = '';
     getNotes();
 }
 
@@ -68,19 +67,20 @@ function getNotes() {
         const value = localStorage.getItem(key);
        
         notes.innerHTML += value;
-        // for (x in items) {
-        //     let note = document.getElementById(x);
-        //     if (note !== null && note.getAttribute('ispinned') === true)
-        //         pinnedNotes.innerHTML += note.outerHTML;
-        // }
-        // const note = document.getElementById(key); // of course id doesn't work, jesus christ
-        // if (note.getAttribute('ispinned') === true)
     }
+    for (x in items) {
+        let item = document.getElementById(x);
+
+        if (item && item.dataset.pin.includes(true)) {
+            pinnedNotes.innerHTML += item.outerHTML;        
+        }
+    }
+    // notes.innerHTML -= pinnedNotes.innerHTML;
 }
 
 function pinNote() {
     if (title.value === '') return;
-    console.log('cl');
+
     const note = document.getElementById(title.value);
     note.setAttribute('data-pin', true);
     localStorage.setItem(title.value, note.outerHTML);
@@ -90,18 +90,8 @@ function pinNote() {
     // notes.innerHTML = '';
     // getNotes();
 }
-//   for (x in items) {
-//             let note = document.getElementById(x);
-//             console.log(note);
-//         }
+
 addBtn.addEventListener('click', addNote);
 rmvBtn.addEventListener('click', removeNote);
 pin.addEventListener('click', pinNote);
 
-for (x in items) {
-    let item = document.getElementById(x);
-
-    if (item && item.dataset.pin.includes(true)) {
-        pinnedNotes.innerHTML += item.outerHTML;
-    }
-}
