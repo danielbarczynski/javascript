@@ -6,9 +6,13 @@ const notes = document.querySelector('#notes');
 const pinnedNotes = document.querySelector('#pinnedNotes');
 const notebg = document.querySelector('#notebg');
 const pin = document.querySelector('#pin');
+const unpin = document.querySelector('#unpin');
 const items = { ...localStorage };
 
 getNotes();
+
+//? deleting or adding by checkbox 
+//? change innerhtml to appendchild
 
 function addNote() {
     if (title.value === '' || text.value === '') return;
@@ -22,7 +26,7 @@ function addNote() {
     const note = document.createElement('div');
     let noteId = title.value;
     note.id = noteId;
-    note.setAttribute('data-pin', true);
+    note.setAttribute('data-pin', false);
     note.style.display = 'block';
     note.style.padding = '5px';
     note.style.margin = '5px';
@@ -40,9 +44,6 @@ function addNote() {
     refresh();
 }
 
-function handlePin() {
-    console.log('clicked');
-}
 function refresh() {
     title.value = '';
     text.value = '';
@@ -68,6 +69,7 @@ function getNotes() {
        
         notes.innerHTML += value;
     }
+
     for (x in items) {
         let item = document.getElementById(x);
 
@@ -75,7 +77,17 @@ function getNotes() {
             pinnedNotes.innerHTML += item.outerHTML;        
         }
     }
-    // notes.innerHTML -= pinnedNotes.innerHTML;
+
+    notes.innerHTML = '';
+
+    for (let i = 0; i < localStorage.length; i++) { // i know it's terrible. it works tho
+
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
+
+        if (!pinnedNotes.innerHTML.includes(value))
+            notes.innerHTML += value;
+    }
 }
 
 function pinNote() {
@@ -84,14 +96,23 @@ function pinNote() {
     const note = document.getElementById(title.value);
     note.setAttribute('data-pin', true);
     localStorage.setItem(title.value, note.outerHTML);
-    // pinnedNotes.appendChild('div');
-    pinnedNotes.innerHTML += note.outerHTML;
-    // refresh();
-    // notes.innerHTML = '';
-    // getNotes();
+    notes.innerHTML = '';
+    pinnedNotes.innerHTML = '';
+    getNotes();
 }
 
+function unpinNote() {
+    if (title.value === '') return;
+
+    const note = document.getElementById(title.value);
+    note.setAttribute('data-pin', false);
+    localStorage.setItem(title.value, note.outerHTML);
+    notes.innerHTML = '';
+    pinnedNotes.innerHTML = '';
+    getNotes();
+}
 addBtn.addEventListener('click', addNote);
 rmvBtn.addEventListener('click', removeNote);
 pin.addEventListener('click', pinNote);
+unpin.addEventListener('click', unpinNote);
 
