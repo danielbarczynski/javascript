@@ -6,6 +6,16 @@ const notes = document.querySelector('#notes');
 const pinnedNotes = document.querySelector('#pinnedNotes');
 const notebg = document.querySelector('#notebg');
 const pin = document.querySelector('#pin');
+const items = { ...localStorage };
+
+for (x in items) {
+    if (document.getElementById(x) !== null){
+    document.getElementById(x).addEventListener('click', () => {
+        localStorage.removeItem();
+    });
+}
+    // console.log(document.getElementById(x));
+}
 
 getNotes();
 
@@ -64,12 +74,15 @@ function getNotes() {
         const key = localStorage.key(i);
     
         const value = localStorage.getItem(key);
-        console.log(value);
+       
         notes.innerHTML += value;
+        // for (x in items) {
+        //     let note = document.getElementById(x);
+        //     if (note !== null && note.getAttribute('ispinned') === true)
+        //         pinnedNotes.innerHTML += note.outerHTML;
+        // }
         // const note = document.getElementById(key); // of course id doesn't work, jesus christ
         // if (note.getAttribute('ispinned') === true)
-        if (value.match('ispinned="true"'))
-            pinnedNotes.innerHTML += value;
     }
 }
 
@@ -85,14 +98,11 @@ function pinNote() {
     // notes.innerHTML = '';
     // getNotes();
 }
-
-//* for test
-//const items = { ...localStorage };
-
-// for (x in items) {
-//     document.getElementById(x).innerHTML = localStorage.getItem(x);
-// }
-
+  for (x in items) {
+            let note = document.getElementById(x);
+            console.log(note);
+        }
 addBtn.addEventListener('click', addNote);
 rmvBtn.addEventListener('click', removeNote);
 pin.addEventListener('click', pinNote);
+
