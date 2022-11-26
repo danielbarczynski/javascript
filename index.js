@@ -8,14 +8,6 @@ const notebg = document.querySelector('#notebg');
 const pin = document.querySelector('#pin');
 const items = { ...localStorage };
 
-for (x in items) {
-    if (document.getElementById(x) !== null){
-    document.getElementById(x).addEventListener('click', () => {
-        localStorage.removeItem();
-    });
-}
-    // console.log(document.getElementById(x));
-}
 
 getNotes();
 
@@ -31,7 +23,7 @@ function addNote() {
     const note = document.createElement('div');
     let noteId = title.value;
     note.id = noteId;
-    note.setAttribute('ispinned', false);
+    note.setAttribute('data-pin', true);
     note.style.display = 'block';
     note.style.padding = '5px';
     note.style.margin = '5px';
@@ -91,18 +83,25 @@ function pinNote() {
     console.log('cl');
     const note = document.getElementById(title.value);
     console.log(note.outerHTML);
-    note.setAttribute('ispinned', true);
+    note.setAttribute('data-pin', true);
     // pinnedNotes.appendChild('div');
     pinnedNotes.innerHTML += note.outerHTML;
     // refresh();
     // notes.innerHTML = '';
     // getNotes();
 }
-  for (x in items) {
-            let note = document.getElementById(x);
-            console.log(note);
-        }
+//   for (x in items) {
+//             let note = document.getElementById(x);
+//             console.log(note);
+//         }
 addBtn.addEventListener('click', addNote);
 rmvBtn.addEventListener('click', removeNote);
 pin.addEventListener('click', pinNote);
 
+for (x in items) {
+    let item = document.getElementById(x);
+
+    if (item && item.dataset.pin.includes(true)) {
+        pinnedNotes.innerHTML += item.outerHTML;
+    }
+}
