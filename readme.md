@@ -1,37 +1,27 @@
-## NotePocket
+# Operacje asynchroniczne
 
-### Wersja hobbit
-Aplikacja pozwala na tworzenie, edycję przechowywanie i usuwanie notatek. Każda notatka musi w minimalnej formie posiadać:
+Załóżmy że wykonanie określonej operacji na dwóch argumentach (np. dodawania liczb całkowitych) zajmuje pewien czas i musi zostać wykonane asynchronicznie.
+Funkcja wykonująca zadaną operację zwraca Promise.
 
-> Tytuł  
-> Treść  
-> Kolor notatki  
-> Pin (boolean) - możliwość przypięcia do góry na liście notatek  
-> Datę utworzenia
+Asynchroniczna funkcja dodająca:  
+```Javascript
+const asyncAdd = async (a,b) => {
+  if (typeof a !== 'number' || typeof b !== 'number') {
+    return Promise.reject('Argumenty muszą mieć typ number!')
+  }
+  return new Promise((resolve, reject) => {
+    setTimeout(() =>{
+      resolve(a+b)
+    }, 100)
+  })
+}
+```
 
-Notatki powinny być zapisywane w localStorage i wyświetlane w formie tablicy notatek na stronie głównej aplikacji.
+### Zadanie
+1. Napisz funkcję która pobiera dowolną ilość argumentów (liczby całkowite) i następnie korzysta z asyncAdd() by je dodać.
+1. Napisz funkcję mierzącą czas wykonania kodu.
+1. Zmierz działanie funkcji dodającej dla zbiorów danych o wielkości 100 elementów. Wyświetl czas wykonania oraz ilość operacji asynchronicznych.
+1. Zoptymalizuj działanie swojej funkcji pod kątem czasu wykonania 
 
-### Wersja elf
-- Tagowanie notatek  
-- Wyszukiwarka notatek (po wszystkich dostępnych pola notatki oraz tagach)  
-
-
-### Wersja ork
-- Zapisywanie daty przypomnień (i wyświetlanie przypomnienia jeśli user jest na stronie lub ma pominięte przypomnienia)  
-- Notatka może posiadać listę wypunktowaną (kliknięcie w punkt przenosi go do listy "done" - coś jak lista zakupów/todo)  
-
-Przykłady: Google Keep, Evernote, Onenote
-
-### Przydatne
-> Obsługa localStorage:  
-> ```localStorage.getItem(key)```
-> ```localStorage.setItem(key, stringValue)```
-> ```localStorage.removeItem(key)```
-> ```localStorage.clear()```
-
-> Zapisywanie dat (timestamp lub ISO string):   
-> ``` Date.now() //timestamp ```  
-> ``` new Date().toISOString() //format ISO ```  
-> Wyświetlanie daty  
-> ``` dateObject.toLocaleString() ```  
-> ``` dateObject.get*() ```
+### Przydamisię
+Mierzenie czasu wykonywania skryptu: performance.now() lub performance.mark(name) + performance.measure(name, startMark, endMark)
