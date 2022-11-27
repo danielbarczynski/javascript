@@ -14,9 +14,10 @@ const measureTime = (x) => {
 
 const measureTime2 = (x) => {
     performance.mark('start');
-    // addNums(x);
+    addNums(x);
     performance.mark('end');
-    performance.measure('start', 'end');
+    const meas = performance.measure('someName', 'start', 'end');
+    meas
 }
 
 const asyncAdd = async (a, b) => {
