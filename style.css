@@ -1,0 +1,9 @@
+body {
+    background-color: rgb(33, 33, 33);
+    color: aliceblue;
+}
+
+canvas {
+    border: 1px solid;
+    margin-left: 20%;
+}
