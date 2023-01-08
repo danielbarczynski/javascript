@@ -1,0 +1,1 @@
+// tutaj uzyc kodu z lab4 (notatki) i w nich umieszczac szczegoly o pogodzie (?)
