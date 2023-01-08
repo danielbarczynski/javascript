@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 20px;
+}
+
+body {
+    margin: 5% 30%;
+    background-color: rgb(55, 55, 55);
+    color: aliceblue;
+}
+
+#notes, #pinnedNotes {
+    display: flex;
+    /* justify-content: space-between;    */
+    /* flex-flow: wrap; */
+    flex-wrap: wrap;
+}
