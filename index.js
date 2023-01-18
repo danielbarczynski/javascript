@@ -11,6 +11,14 @@ const notebg = document.querySelector('#notebg');
 const pin = document.querySelector('#pin');
 const unpin = document.querySelector('#unpin');
 const items = { ...localStorage };
+const weather = {
+    apiKey: "e41377c798473de5cae831a5c0882c7e",
+    fetchWeather: function() {
+        fetch('api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=e41377c798473de5cae831a5c0882c7e')
+        .then(response => response.json())
+        .then(data => console.log(data));
+    }
+}
 
 getNotes();
 
@@ -29,17 +37,6 @@ function getNotes() {
             pinnedNotes.appendChild(item);
         }
     }
-
-    // notes.innerHTML = ''; // refactored
-
-    // for (let i = 0; i < localStorage.length; i++) { // i know it's terrible. it works tho
-
-    //     const key = localStorage.key(i);
-    //     const value = localStorage.getItem(key);
-
-    //     if (!pinnedNotes.innerHTML.includes(value))
-    //         notes.innerHTML += value;
-    // }
 }
 
 function addNote() {
