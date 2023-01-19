@@ -13,10 +13,21 @@ const unpin = document.querySelector('#unpin');
 const items = { ...localStorage };
 const weather = {
     apiKey: "e41377c798473de5cae831a5c0882c7e",
-    fetchWeather: function() {
-        fetch(`http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=${weather.apiKey}`)
+    fetchWeather: function(city) {
+        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${weather.apiKey}`)
         .then(response => response.json())
-        .then(data => console.log(data));
+        .then(data => this.displayWeather(data));
+    },
+    displayWeather: function(data) {
+        const { name } = data;
+        const { icon, description } = data.weather[0];
+        const { temp, humidity } = data.main;
+        notes.innerHTML = `
+            Miasto: ${name} ${icon} 
+            Description: ${description} 
+            Temperature: ${temp} 
+            Wilgotność: ${humidity}
+        `;
     }
 }
 
