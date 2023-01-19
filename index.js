@@ -1,6 +1,3 @@
-//? deleting or pinning by checkbox 
-//? change innerhtml to appendchild
-
 const title = document.querySelector('#title');
 const text = document.querySelector('#text');
 const addBtn = document.querySelector('#add');
@@ -23,10 +20,10 @@ const weather = {
         const { icon, description } = data.weather[0];
         const { temp, humidity } = data.main;
         notes.innerHTML = `
-            Miasto: ${name} ${icon} 
+            City: ${name} <img src="https://openweathermap.org/img/wn/${icon}@2x.png" />
             Description: ${description} 
-            Temperature: ${temp} 
-            Wilgotność: ${humidity}
+            Temperature: ${temp}°C
+            Humidity: ${humidity}%
         `;
     }
 }
