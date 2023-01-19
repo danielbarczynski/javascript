@@ -14,7 +14,7 @@ const items = { ...localStorage };
 const weather = {
     apiKey: "e41377c798473de5cae831a5c0882c7e",
     fetchWeather: function() {
-        fetch('api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=e41377c798473de5cae831a5c0882c7e')
+        fetch(`http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=${weather.apiKey}`)
         .then(response => response.json())
         .then(data => console.log(data));
     }
