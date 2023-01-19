@@ -10,31 +10,39 @@ const unpin = document.querySelector('#unpin');
 const items = { ...localStorage };
 const weather = {
     apiKey: "e41377c798473de5cae831a5c0882c7e",
-    fetchWeather: function(city) {
+    fetchWeather: function(city, note) {
         fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${weather.apiKey}`)
         .then(response => response.json())
-        .then(data => this.displayWeather(data));
+        .then(data => this.displayWeather(data, note));
     },
-    displayWeather: function(data) {
+    displayWeather: function(data, note) {
         const { name } = data;
         const { icon, description } = data.weather[0];
         const { temp, humidity } = data.main;
-        notes.innerHTML = `
-            City: ${name} <img src="https://openweathermap.org/img/wn/${icon}@2x.png" />
+        note.id = name;
+        note.innerHTML = `
+            City: ${name} 
+            <br />
+            <img src="https://openweathermap.org/img/wn/${icon}@2x.png" />
+            <br />
             Description: ${description} 
+            <br />
             Temperature: ${temp}°C
+            <br />
             Humidity: ${humidity}%
         `;
+        localStorage.setItem(name, note.outerHTML);
     }
 }
 
 getNotes();
 
+//* zostawiam nazwy funkcji i zmiennych jakie były (kod z notatek) za dużo refactoringu (html, css, js) 
 function getNotes() {
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         const value = localStorage.getItem(key);
-
+        //* tutaj fetch po key
         notes.innerHTML += value;
     }
 
@@ -48,35 +56,19 @@ function getNotes() {
 }
 
 function addNote() {
-    if (title.value === '' || text.value === '') return;
-
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0');
-    var yyyy = today.getFullYear();
-
-    today = mm + '/' + dd + '/' + yyyy;
+    if (title.value === '') return;
     const note = document.createElement('div');
-    let noteId = title.value;
-
+    // let noteId = title.value;
     note.setAttribute('data-pin', false);
-    note.id = noteId;
+    // note.id = noteId;
     note.style.display = 'block';
     note.style.padding = '5px';
     note.style.margin = '5px';
     note.style.border = 'solid 1px';
     note.style.backgroundColor = notebg.options[notebg.selectedIndex].textContent;
-
+    console.log(title.value);
     notes.appendChild(note);
-    note.innerHTML = `
-    <b>${noteId} </b> <input class="pin" type="checkbox"/>
-     <br /> <br />
-     ${text.value}
-     <br /> <br />
-     ${today}
-     `;
-
-    localStorage.setItem(title.value, note.outerHTML);
+    weather.fetchWeather(title.value, note);
     refresh();
     getNotes();
 }
