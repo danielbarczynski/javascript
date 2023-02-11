@@ -9,8 +9,8 @@ class Circle {
         this.x = x;
         this.y = y;
         this.size = size;
-        this.dx = dx;
-        this.dy = dy;
+        this.dx = dx; // szybkosc poruszania po linii x
+        this.dy = dy; // szybkosc poruszania po linii y
     }
 }
 
