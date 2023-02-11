@@ -25,21 +25,21 @@ function getNotes() {
     for (x in items) {
         let item = document.getElementById(x);
 
-        if (item && item.dataset.pin.includes(true)) {
+        if (item && item.dataset.pin === 'true') {
             pinnedNotes.appendChild(item);
         }
     }
 
-    // notes.innerHTML = ''; // refactored
+    notes.innerHTML = ''; // refactored
 
-    // for (let i = 0; i < localStorage.length; i++) { // i know it's terrible. it works tho
+    for (let i = 0; i < localStorage.length; i++) { // i know it's terrible. it works tho
 
-    //     const key = localStorage.key(i);
-    //     const value = localStorage.getItem(key);
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
 
-    //     if (!pinnedNotes.innerHTML.includes(value))
-    //         notes.innerHTML += value;
-    // }
+        if (!pinnedNotes.innerHTML.includes(value))
+            notes.innerHTML += value;
+    }
 }
 
 function addNote() {
